@@ -3,7 +3,7 @@ class Hanoi:
     def __init__(self, size):
         self.towers = [[], [], []]
         self.size = size
-        self.towers[0] = [x for x in range(size, 0, -1)]
+        self.towers[0] = list(range(size, 0, -1))
 
     def playHanoi(self):
         self.printTowers()

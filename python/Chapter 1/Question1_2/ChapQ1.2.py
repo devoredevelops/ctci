@@ -3,10 +3,7 @@
 #using recursion here to avoid recopying the string, as described in the discussion of "string buffer".
 
 def reverseStringRecursive(str1):
-    if str1 != "":
-        return str1[-1:] + reverseStringRecursive(str1[:-1])
-    else:
-        return ""
+    return str1[-1:] + reverseStringRecursive(str1[:-1]) if str1 != "" else ""
 
 #testing
 

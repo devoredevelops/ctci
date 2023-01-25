@@ -52,12 +52,11 @@ def addLists_fwd_2(L1, L2):
 
 # Helper function for recursive adding lists
 def addListsFwd2Helper(p1, p2):
-    if (p1 == None) and (p2 == None):
-        sumandcarry = [None,0]       # a python list stores sum node and carry
-        return sumandcarry
+    if p1 is None and p2 is None:
+        return [None,0]
     sumandcarry = addListsFwd2Helper(p1.next, p2.next)
     val = p1.value + p2.value + sumandcarry[1]
-    dig_node = insertBefore(sumandcarry[0], val%10) 
+    dig_node = insertBefore(sumandcarry[0], val%10)
     carry = val/10
     return [dig_node, carry]
 
@@ -100,7 +99,7 @@ def lengthOfLinkedlist(linkedlist):
 def padInFront(linkedlist, number):
     padlist = LinkedList()
     padlist.head = linkedlist.head
-    for i in range(number):
+    for _ in range(number):
         addNodeInFront(padlist, 0)
     return padlist
 

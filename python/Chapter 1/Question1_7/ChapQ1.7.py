@@ -11,10 +11,10 @@ class MatrixProcessor:
     def __str__(self):
         rowstring=""
         for row in self.matrix:
-            rowstring = rowstring + "["
+            rowstring = f"{rowstring}["
             for cell in row:
-                rowstring = rowstring + " " + str(cell) + " "
-            rowstring = rowstring + "]\n"            
+                rowstring = f"{rowstring} {str(cell)} "
+            rowstring = rowstring + "]\n"
         return rowstring
 
     def zeroProcess(self):
@@ -31,9 +31,7 @@ class MatrixProcessor:
             self.zeroColumn(colnum)
 
     def zeroRow(self, rownum):
-        newRow=[]
-        for x in range(0, self.m):
-            newRow.append(0)
+        newRow = [0 for _ in range(self.m)]
         self.matrix[rownum]=newRow
 
     def zeroColumn(self, colnum):

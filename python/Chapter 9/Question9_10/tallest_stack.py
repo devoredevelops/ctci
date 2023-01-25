@@ -89,7 +89,7 @@ class Stack(frozenset):
             return []
 
         # Map each box to the highest substack we can build with it as bottom
-        substacks = dict()
+        substacks = {}
         for box in self:
             stack_ = self.subtract(box)
             stackable = stack_.stackable_on(box)

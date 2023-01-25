@@ -8,9 +8,7 @@ class MyQueue(object):
 			return self.s[1].pop()
 		while len(self.s[0]) > 0:
 			self.s[1].append(self.s[0].pop())
-		if len(self.s[1]) == 0:
-			return None
-		return self.s[1].pop()
+		return None if len(self.s[1]) == 0 else self.s[1].pop()
 	
 	def length(self):
 		return len(self.s[0]) + len(self.s[1])
@@ -24,13 +22,14 @@ q2 = Queue()
 
 #testing
 from random import randrange
-for step in xrange(20):
+for _ in xrange(20):
 	operation = randrange(10)
 	if operation < 7:
 		q1.push(operation)
 		q2.put(operation)
 		print "push", operation
 	elif not q2.empty():
+		print "pop", q1.pop(), q2.get()
 		print "pop", q1.pop(), q2.get()
 while not q2.empty():
 	print "pop", q1.pop(), q2.get()

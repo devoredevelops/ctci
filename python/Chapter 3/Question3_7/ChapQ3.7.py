@@ -16,8 +16,8 @@ class AnimalQueue(object):
 			print "invalid animal type"
 
 	def dequeue_any(self):
-		dog = self.dog_q.pop() if not len(self.dog_q) == 0 else (None, -1)
-		cat = self.cat_q.pop() if not len(self.cat_q) == 0 else (None, -1)
+		dog = self.dog_q.pop() if len(self.dog_q) != 0 else (None, -1)
+		cat = self.cat_q.pop() if len(self.cat_q) != 0 else (None, -1)
 		if dog[1] == -1 and cat[1] == -1:
 			return None
 		elif dog[1] < cat[1]:
@@ -28,11 +28,11 @@ class AnimalQueue(object):
 			return cat[0]
 
 	def dequeue_cat(self):
-		if not len(self.cat_q) == 0:
+		if len(self.cat_q) != 0:
 			return self.cat_q.pop()[0]
 
 	def dequeue_dog(self):
-		if not len(self.dog_q) == 0:
+		if len(self.dog_q) != 0:
 			return self.dog_q.pop()[0]
 
 #testing

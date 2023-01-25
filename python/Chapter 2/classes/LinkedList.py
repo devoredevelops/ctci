@@ -16,12 +16,12 @@ class LinkedList:
     def addNode(self,value):
         node = Node(value)
         #if the old list is none, set new node as the first node
-        if self.head == None:
+        if self.head is None:
             self.head = node
-            self.tail = node
         else:
             self.tail.next = node
-            self.tail = node
+
+        self.tail = node
 
     def __str__(self):
         if self.head != None:
@@ -49,7 +49,7 @@ class LinkedList:
 
 def randomLinkedList(length, min, max):
     linkedlist = LinkedList()
-    for i in range(length):
+    for _ in range(length):
         value = randint(min, max)
         linkedlist.addNode(value)
     return linkedlist

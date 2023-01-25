@@ -18,11 +18,10 @@ class SingleArrayStacks(object):
     def pop(self, stacknum):
         if self.pointer[stacknum] < 0:
             return "Trying to pop an empty stack."
-        else:
-            data = self.array[self.stacktop(stacknum)]
-            self.array[self.stacktop(stacknum)] = None
-            self.pointer[stacknum] -= 1
-            return data
+        data = self.array[self.stacktop(stacknum)]
+        self.array[self.stacktop(stacknum)] = None
+        self.pointer[stacknum] -= 1
+        return data
 
     def peek(self, stacknum):
         if self.pointer[stacknum] < 0:

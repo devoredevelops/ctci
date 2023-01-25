@@ -12,11 +12,9 @@ class StackWithMin(object):
 	def pop(self):
 		return self.storage.pop()[0]
 	def get_top(self):
-		if len(self.storage) == 0: return None
-		return self.storage[-1][0]
+		return None if len(self.storage) == 0 else self.storage[-1][0]
 	def get_min(self):
-		if len(self.storage) == 0: return None
-		return self.storage[-1][1]
+		return None if len(self.storage) == 0 else self.storage[-1][1]
 
 
 # Approach 2. Use an additional python list to keep track of mins (Save space)
@@ -39,9 +37,7 @@ class StackWithMin2:
         return data
 
     def get_min(self):
-        if len(self.min)==0:
-            return None
-        return self.min[-1]
+    	return None if len(self.min)==0 else self.min[-1]
 
 
 

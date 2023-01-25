@@ -6,11 +6,11 @@ def kth_to_last(linkedlist, k):
     if k <= 0:
         return "invalid k"
     pointer2 = linkedlist.head
-    for i in range(k-1):
-        if pointer2.next != None:
-            pointer2 = pointer2.next
-        else:
+    for _ in range(k-1):
+        if pointer2.next is None:
             return "k exceeds the length of linkedlist"
+        else:
+            pointer2 = pointer2.next
     pointer1 = linkedlist.head
     while pointer2.next != None:
         pointer2 = pointer2.next

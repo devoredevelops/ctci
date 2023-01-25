@@ -29,15 +29,10 @@ def parentheses(n):
         return
 
     for p in parentheses(n - 1):
-        p1 = "({0})".format(p)
         p2 = "(){0}".format(p)
         p3 = "{0}()".format(p)
 
-        # If p is a sequence of open-closed parentheses, such as '()()', p2 and
-        # p3 are the same string, as we prepend and append an additional '()'
-        # to it, respectively. Yield only one of them to avoid duplicates.
-
-        yield p1
+        yield "({0})".format(p)
         yield p2
         if p3 != p2:
             yield p3

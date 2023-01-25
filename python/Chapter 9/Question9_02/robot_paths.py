@@ -70,10 +70,7 @@ class Grid(object):
         if (row, column) == destination:
             return current
 
-        neighbors = []
-        neighbors.append((row, column + 1))
-        neighbors.append((row + 1, column))
-
+        neighbors = [(row, column + 1), (row + 1, column)]
         for n in neighbors:
             if self.is_allowed(*n):
                 path = self.find_path(*n)

@@ -6,7 +6,7 @@ class BinaryTree:
         self.right = None
 
     def __str__(self):
-        return "( " + str(self.content) + " ( " + str(self.left) + " | " + str(self.right) + "))" 
+        return f"( {str(self.content)} ( {str(self.left)} | {str(self.right)}))" 
 
 #implement a function if a binary tree is a binary search tree
 
@@ -17,11 +17,9 @@ def valid_bsearch_tree(btree, lbound = -float("inf"), rbound = float("inf")):
 		valid_bsearch_tree(btree.right, btree.content, rbound)
 
 def valid_bsearch_tree2(btree):
-	#in-order method
-	l = in_order_search(btree)
-	if sorted(l) == l:
-		return True
-	return False
+    #in-order method
+    l = in_order_search(btree)
+    return sorted(l) == l
 
 def in_order_search(btree):
 	if btree is None: return []
@@ -66,32 +64,32 @@ class BinarySearchTree:
 		self.root = None
 
 	def addUsingKey(self, key):
-		treenode = TreeNode(key)
-		if self.root == None:
-			self.root = treenode
-		else:
-			buff = self.root
-			current =self.root
-			while current != None:
-				if current.key < treenode.key:
-					buff = current
-					current = current.right
-				else:
-					buff = current
-					current = current.left
-			if buff.key < treenode.key:
-				buff.right = treenode
-			else:
-				buff.left = treenode
+	    treenode = TreeNode(key)
+	    if self.root is None:
+	        self.root = treenode
+	    else:
+	        buff = self.root
+	        current =self.root
+	        while current != None:
+	        	if current.key < treenode.key:
+	        		buff = current
+	        		current = current.right
+	        	else:
+	        		buff = current
+	        		current = current.left
+	        if buff.key < treenode.key:
+	        	buff.right = treenode
+	        else:
+	        	buff.left = treenode
 # min/max solution
 def checkBST(root,mini,maxi):
-	if root == None:
-		return True
-	elif (mini != None and root.key <= mini) or (maxi != None and root.key > maxi):
-		return False
-	elif checkBST(root.left, mini, root.key) == False or checkBST(root.right, root.key, maxi) == False:
-		return False
-	return True
+    if root is None:
+        return True
+    elif (mini != None and root.key <= mini) or (maxi != None and root.key > maxi):
+    	return False
+    elif checkBST(root.left, mini, root.key) == False or checkBST(root.right, root.key, maxi) == False:
+    	return False
+    return True
 
 def checkBSTApp(tree):
 	return checkBST(tree.root, None, None)
@@ -99,12 +97,12 @@ def checkBSTApp(tree):
 # copying bst to array, chacking if the arr is sorted is easy
 arr = []
 def copyBST(root,arr):
-	if root == None:
-		1
-	else:
-		copyBST(root.left,arr)
-		arr.append(root.key)
-		copyBST(root.right,arr)
+    if root is None:
+        1
+    else:
+        copyBST(root.left,arr)
+        arr.append(root.key)
+        copyBST(root.right,arr)
 # test
 bst = BinarySearchTree()
 for i in range(5):

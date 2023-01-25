@@ -15,11 +15,7 @@ def no_duplicates(str_):
 def no_duplicates_no_structures(str_):
     """ Now without using additional data structures """
 
-    for letter in str_:
-        if str_.count(letter) > 1:
-            return False
-    else:
-        return True
+    return all(str_.count(letter) <= 1 for letter in str_)
 
 class NoDuplicatesTest(unittest.TestCase):
 
