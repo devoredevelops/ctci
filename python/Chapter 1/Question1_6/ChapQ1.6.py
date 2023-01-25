@@ -12,14 +12,16 @@ class MatrixProcessor:
 
         # Iterating over rows and the matrix via a generator,
         # and joining the cell and then row into the final string output
-        return ''.join("%s%s%s" % ("[", ''.join("%s%s%s" % (" ", str(cell), " ")
-                                                for cell in row), "]\n") for row in self.matrix)
+        return ''.join(
+            ("%s%s%s" % ("[", ''.join(f" {str(cell)} " for cell in row), "]\n"))
+            for row in self.matrix
+        )
 
     def rotate90CW(self):
         # strategy is to make what are now rows into columns, and reverse the order,
         # which mimics the effect of rotation on the matrix.
         # This creates our empty list of columns by the length of the original matrix
-        columnlist = [[] for i in range(len(self.matrix))]
+        columnlist = [[] for _ in range(len(self.matrix))]
         # Now this iterates through the rows and columns and appends those to the new columnlist
         [[columnlist[i].append(row[i]) for i in range(len(row))] for row in self.matrix]
         # reverses the new column list to get the order that is wanted, and assigned back to the original matrix

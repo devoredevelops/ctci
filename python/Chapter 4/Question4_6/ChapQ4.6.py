@@ -7,25 +7,25 @@ class BinaryTree:
         self.parent = None
 
     def __str__(self):
-        return "( " + str(self.content) + " ( " + str(self.left) + " | " + str(self.right) + "))" 
+        return f"( {str(self.content)} ( {str(self.left)} | {str(self.right)}))" 
 
 #write an algorithm to fint the  'next' node (i.e., in-order successor) of a given node in a binary search btre.
 #You may assume that each node has a link to its parent.
 
 def find_next_btree(btree):
-	if btree is None: return None
-	if btree.right is None:
-		#be careful here!
-		ret = btree.parent
-		while ret is not None and ret.content <= btree.content:
-			ret = ret.parent
-		return ret
-	else:
-		#find left most in right sub-tree
-		ret = btree.right
-		while ret.left is not None:
-			ret = ret.left
-		return ret
+    if btree is None: return None
+    if btree.right is None:
+        #be careful here!
+        ret = btree.parent
+        while ret is not None and ret.content <= btree.content:
+        	ret = ret.parent
+    else:
+        #find left most in right sub-tree
+        ret = btree.right
+        while ret.left is not None:
+        	ret = ret.left
+
+    return ret
 
 # recursive solution
 
@@ -81,51 +81,46 @@ class BinarySearchTree:
 		self.root = None
 
 	def addUsingKey(self, key):
-		treenode = TreeNode(key)
-		if self.root == None:
-			self.root = treenode
-		else:
-			buff = self.root
-			current =self.root
-			while current != None:
-				if current.key < treenode.key:
-					buff = current
-					current = current.right
-				else:
-					buff = current
-					current = current.left
-			if buff.key < treenode.key:
-				buff.right = treenode
-				treenode.p = buff
-			else:
-				buff.left = treenode
-				treenode.p = buff
+	    treenode = TreeNode(key)
+	    if self.root is None:
+	        self.root = treenode
+	    else:
+	        buff = self.root
+	        current =self.root
+	        while current != None:
+	        	if current.key < treenode.key:
+	        		buff = current
+	        		current = current.right
+	        	else:
+	        		buff = current
+	        		current = current.left
+	        if buff.key < treenode.key:
+	            buff.right = treenode
+	        else:
+	            buff.left = treenode
+
+	        treenode.p = buff
 
 def inorderSucc(treenode):
-	if treenode != None:
-		if treenode.right != None:
-			return leftMostChild(treenode.right)
-		else:
-			p = treenode.p
-			while p != None:
-				if p.left == treenode:
-					break
-				else:
-					treenode = p
-					p = treenode.p
-			return p
-	return None
+    if treenode is None:
+        return None
+    if treenode.right is not None:
+        return leftMostChild(treenode.right)
+    p = treenode.p
+    while p != None and p.left != treenode:
+        treenode = p
+        p = treenode.p
+    return p
 
 def leftMostChild(treenode):
-	if treenode == None:
-		return None
-	else:
-		n = treenode
-		child = treenode.left
-		while child != None:
-			n = child
-			child = n.left
-		return n
+    if treenode is None:
+        return None
+    n = treenode
+    child = treenode.left
+    while child != None:
+    	n = child
+    	child = n.left
+    return n
 # test
 bst1 = BinarySearchTree()
 bst1.addUsingKey(0)

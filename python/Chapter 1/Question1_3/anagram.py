@@ -16,5 +16,5 @@ if __name__ == '__main__':
               (' ba ', ' Ab   '),
               ('anne', 'annea') )
     for w1, w2 in words:
-        print('anagram({}, {}): {}'.format(w1, w2, anagram(w1, w2)))
-        print('anagram({}, {}): {}'.format(w1, w2, anagram2(w1, w2)))
+        print(f'anagram({w1}, {w2}): {anagram(w1, w2)}')
+        print(f'anagram({w1}, {w2}): {anagram2(w1, w2)}')

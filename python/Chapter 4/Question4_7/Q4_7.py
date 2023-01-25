@@ -22,46 +22,37 @@ def commonAncestor_1(p, q):
 def cover(root, n):
     if root is None:
         return False
-    if root is n:
-        return True
-    return cover(root.left, n) or cover(root.right, n)
+    return True if root is n else cover(root.left, n) or cover(root.right, n)
 
 
 
 # Method 2: if nodes have no links to parents.
 def commonAncestor_2(root, p, q):
     result = commonAncestor2_helper(root, p, q)
-    if result[1]:
-        return result[0]
-    return None
+    return result[0] if result[1] else None
 
 def commonAncestor2_helper(root, p, q):
     if root is None:
         return None, False
     if root is p and root is q:
         return root, True
-    
+
     left = commonAncestor2_helper(root.left, p, q)
     if left[1] == True:     # Already found ancestor in the subtree
         return left
-    
+
     right = commonAncestor2_helper(root.right, p, q)
     if right[1] == True:    # Already found ancestor in the subtree
         return right
-    
+
     # If One of subtree return p and one of subtree return q, found common ancestor
     if left[0] != None and right[0] != None:
         return root, True
-    
-    # If root is p or q and one of the subtrees contain q or p, the root is common ancestor
-    # If no p or q in the subtree, return root, False
+
     elif root is p or root is q:
-        isAncestor = True if left[0] != None or right[0] != None else False
+        isAncestor = left[0] != None or right[0] != None
         return root, isAncestor
-    
-    # The rest condition:
-    # 1) One of the subtree contains only p or q, another subtree is None, return p or q, False
-    # 2) None of subtrees contain p or q, return None, False
+
     else:
         return left[0] if left[0] != None else right[0], False
 

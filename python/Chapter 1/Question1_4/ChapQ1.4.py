@@ -32,7 +32,7 @@ class BackQueue:
 def changeSpacesForURL(spacestring):
     index=0
     bqueue = BackQueue(spacestring)
-    
+
     while index<len(spacestring):
         if (index + bqueue.queuelength) == len(spacestring):
             #we need to operate differently if the back queue is full. direct transfer.
@@ -47,14 +47,12 @@ def changeSpacesForURL(spacestring):
                     bqueue.addToQueue("0")
                 else:
                     bqueue.addToQueue(thischar)
+            elif thischar==" ":
+                spacestring[index]="%"
+                bqueue.addToQueue("2")
+                bqueue.addToQueue("0")
             else:
-                #we need to operate differently depending on if the back queue is empty (direct transfer instead of using queue).
-                if thischar==" ":
-                    spacestring[index]="%"
-                    bqueue.addToQueue("2")
-                    bqueue.addToQueue("0")
-                else:
-                    spacestring[index]=thischar
+                spacestring[index]=thischar
         index += 1
     return spacestring
 

@@ -18,7 +18,7 @@ class ChessBoard(object):
         """ Instantiate a n x n chessboard. """
 
         # Map each row to the column where a queen is placed
-        self.queens = dict()
+        self.queens = {}
         self.size = n
 
     def __str__(self):

@@ -1,14 +1,12 @@
 from classes.LinkedList import *
 
 def deleteNode(linkedlist, node):
-    if node.next != None:
-        node.value = node.next.value
-        node.next = node.next.next  
-    
-    # if the given node is the last one, no way to delete it.
-    # Here we set the last one's value to None
-    else:
+    if node.next is None:
         node.value = None         
+
+    else:
+        node.value = node.next.value
+        node.next = node.next.next         
 
 
 

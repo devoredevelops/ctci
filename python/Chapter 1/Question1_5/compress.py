@@ -16,10 +16,7 @@ def compress(str_):
             counter = 1
     groups.append(c + str(counter))
     result = ''.join(groups)
-    if len(result) < len(str_):
-        return result
-    else:
-        return str_
+    return result if len(result) < len(str_) else str_
 
 
 import itertools
@@ -39,12 +36,9 @@ def compress(str_):
 
     groups = itertools.groupby(str_)
     compressed = ''.join('{0}{1}'.format(k, len(list(g))) for k, g in groups)
-    if len(compressed) < len(str_):
-        return compressed
-    else:
-        return str_
+    return compressed if len(compressed) < len(str_) else str_
 
 if __name__ == '__main__':
     words = ('aabcccccaaa', 'aaabbbbcccccdee', 'abc', 'a', '', ' ', 'aabccdde', 'aab', 'aaabb')
     for w in words:
-        print('compress({}): {}'.format(w, compress(w)))
+        print(f'compress({w}): {compress(w)}')

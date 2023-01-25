@@ -27,7 +27,7 @@ def subsets(seq):
     # this until the base case, an empty set, is reached.
 
     set_ = list(seq)
-    if len(set_) < 1:
+    if not set_:
         yield set_
         return
 
@@ -50,8 +50,7 @@ class SubsetTest(unittest.TestCase):
 
             """
 
-            subs = list(subsets(x))
-            subs.sort()
+            subs = sorted(subsets(x))
             subs.sort(key = len)
             return subs
 

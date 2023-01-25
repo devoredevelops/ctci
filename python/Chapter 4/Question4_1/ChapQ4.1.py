@@ -10,7 +10,7 @@ class BinaryTree:
         self.depth = -1
 
     def __str__(self):
-        return "( " + str(self.content) + " ( " + str(self.left) + " | " + str(self.right) + "))" 
+        return f"( {str(self.content)} ( {str(self.left)} | {str(self.right)}))" 
         
 #Implement a function to check if a binary tree is balanced. For the purposes of
 #this question, a balanced tree is defined to be a tree such that the heights of the
@@ -26,17 +26,14 @@ def is_balanced_binary_tree(btree):
 def depth(btree):
     if btree is None:
         return 0
-    else:
-        if btree.depth != -1:
-            #caching depth
-            #note that our cache of depth is not being updated using this
-            #method, we would want to add a depth update mechanism whenever
-            #a node is added/removed if we wanted to cache depth in this way.
-            #if we didnt want to store this in the tree, we could cache it in a hash table (dict)
-            return btree.depth
-        else:
-            btree.depth = 1 + max(depth(btree.left), depth(btree.right))
-            return btree.depth
+    if btree.depth == -1:
+        btree.depth = 1 + max(depth(btree.left), depth(btree.right))
+    #caching depth
+    #note that our cache of depth is not being updated using this
+    #method, we would want to add a depth update mechanism whenever
+    #a node is added/removed if we wanted to cache depth in this way.
+    #if we didnt want to store this in the tree, we could cache it in a hash table (dict)
+    return btree.depth
 
 #effcient algorithm, get heights of subtrees and check subtrees if balanced at the same time
 def is_balanced_binary_tree2(btree):
@@ -54,7 +51,7 @@ def check_balanced(btree):
 
 #building testcase 1
 bt = BinaryTree(random.randint(0, 100))
-for c1 in xrange(0,19):
+for _ in xrange(0,19):
     bt2 = BinaryTree(random.randint(0, 100))
     bt2.left = bt
     bt=bt2

@@ -7,4 +7,4 @@ def replace_spaces(string, size):
 if __name__ == '__main__':
     words = ( 'hello world    ', '   mr. john  ', '', ' ', )
     for w in words:
-        print('replaceSpaces({}): {}'.format(w, replaceSpaces(w)))
+        print(f'replaceSpaces({w}): {replaceSpaces(w)}')

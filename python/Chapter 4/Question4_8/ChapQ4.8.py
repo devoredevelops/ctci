@@ -11,32 +11,27 @@ class BinaryTree:
         self.children = -1
 
     def __str__(self):
-        return "( " + str(self.content) + " ( " + str(self.left) + " | " + str(self.right) + "))" 
+        return f"( {str(self.content)} ( {str(self.left)} | {str(self.right)}))" 
 
 #You have two very large binary trees: Tl, with millions of nodes, and T2, with
 #hundreds of nodes. Create an algorithm to decide if T2 is a subtree of Tl.
 
 def count_children(tree1):
-    left=0
-    if tree1.left != None:
-        left = count_children(tree1.left)
-    right=0
-    if tree1.right != None:
-        right = count_children(tree1.right)
+    left = count_children(tree1.left) if tree1.left != None else 0
+    right = count_children(tree1.right) if tree1.right != None else 0
     tree1.children=1+right+left
     return 1+right+left
             
 
 def is_subtree_of(t1,t2):    
-    if t1==None and t2==None:
+    if t1 is None and t2 is None:
         return True
-    elif t1==None or t2==None:        
+    elif t1 is None or t2 is None:        
         return False
-    if t2.content==t1.content:
-        if (is_subtree_of(t1.left,t2.left) and is_subtree_of(t1.right,t2.right)) or is_subtree_of(t1.left,t2) or is_subtree_of(t1.right,t2):       
-            return True
-    else:
+    if t2.content != t1.content:
         return is_subtree_of(t1.left,t2) or is_subtree_of(t1.right,t2)
+    if (is_subtree_of(t1.left,t2.left) and is_subtree_of(t1.right,t2.right)) or is_subtree_of(t1.left,t2) or is_subtree_of(t1.right,t2):       
+        return True
 
 #building testcases
 def make_random_balanced_tree(depth):
@@ -124,45 +119,43 @@ class BinarySearchTree:
 		self.root = None
 
 	def addUsingKey(self, key):
-		treenode = TreeNode(key)
-		if self.root == None:
-			self.root = treenode
-		else:
-			buff = self.root
-			current =self.root
-			while current != None:
-				if current.key < treenode.key:
-					buff = current
-					current = current.right
-				else:
-					buff = current
-					current = current.left
-			if buff.key < treenode.key:
-				buff.right = treenode
-				treenode.p = buff
-			else:
-				buff.left = treenode
-				treenode.p = buff
+	    treenode = TreeNode(key)
+	    if self.root is None:
+	        self.root = treenode
+	    else:
+	        buff = self.root
+	        current =self.root
+	        while current != None:
+	        	if current.key < treenode.key:
+	        		buff = current
+	        		current = current.right
+	        	else:
+	        		buff = current
+	        		current = current.left
+	        if buff.key < treenode.key:
+	            buff.right = treenode
+	        else:
+	            buff.left = treenode
+
+	        treenode.p = buff
 
 def isInc(r1, r2):
-	if r2 == None:
-		return True
-	elif r1 == None:
-		return False
-	elif r1.key == r2.key:
-		if matchTree(r1,r2):
-			return True
-	return isInc(r1.left, r2) or isInc(r1.right, r2)
+    if r2 is None:
+        return True
+    elif r1 is None:
+        return False
+    elif r1.key == r2.key:
+    	if matchTree(r1,r2):
+    		return True
+    return isInc(r1.left, r2) or isInc(r1.right, r2)
 
 def matchTree(r1,r2):
-	if r1 == None and r2 == None:
-		return True
-	elif r1 == None or r2 == None:
-		return False
-	elif r1.key != r2.key:
-		return False
-	else:
-		return matchTree(r1.left, r2.left) and matchTree(r1.right, r2.right)
+    if r1 is None and r2 is None:
+        return True
+    elif r1 is None or r2 is None or r1.key != r2.key:
+        return False
+    else:
+        return matchTree(r1.left, r2.left) and matchTree(r1.right, r2.right)
 
 bst1 = BinarySearchTree()
 for i in range(2):

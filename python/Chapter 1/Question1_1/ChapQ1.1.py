@@ -27,18 +27,15 @@ def hasAllUniqueCharsList(inputstring):
     return True
 
 def hasAllUniqueCharsList2(inputstring):
-    #another way to use a list
-    #O(n)
-    if len(inputstring) > 256: #assume inputstring is ASCII
+    if len(inputstring) > 256:
         return False
-    else:
-        charList = [False] * 256;
-        for char in inputstring:
-            if charList[ord(char)]:
-                return False
-            else:
-                charList[ord(char)] = True
-        return True
+    charList = [False] * 256;
+    for char in inputstring:
+        if charList[ord(char)]:
+            return False
+        else:
+            charList[ord(char)] = True
+    return True
 
 def hasAllUniqueChars(inputstring):
     #using a hash table (here as a dictionary of key/values)

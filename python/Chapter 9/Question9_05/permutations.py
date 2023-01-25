@@ -37,6 +37,7 @@ class PermutationsTest(unittest.TestCase):
 
     def test_permutations(self):
 
+        msg = "{0!r}: {1}! = {2} permutations"
         for _ in xrange(50):
 
             size = random.randint(1, 8)
@@ -48,8 +49,8 @@ class PermutationsTest(unittest.TestCase):
 
             self.assertEqual(output, expected)
             self.assertEqual(len(output), math.factorial(len(str_)))
-            msg = "{0!r}: {1}! = {2} permutations"
-            print msg.format(str_, len(str_), len(output))
+            size = random.randint(1, 8)
+                print msg.format(str_, len(str_), len(output))
 
 if __name__ == "__main__":
     unittest.main()

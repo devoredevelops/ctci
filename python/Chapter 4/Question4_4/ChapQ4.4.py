@@ -7,7 +7,7 @@ class BinaryTree:
         self.right = None
 
     def __str__(self):
-        return "( " + str(self.content) + " ( " + str(self.left) + " | " + str(self.right) + "))" 
+        return f"( {str(self.content)} ( {str(self.left)} | {str(self.right)}))" 
 
 class LinkedList:
     def __init__(self,content):
@@ -15,7 +15,7 @@ class LinkedList:
         self.next = None
 
     def __str__(self):
-        return "( " + str(self.content) + str(self.next) + " )"
+        return f"( {str(self.content)}{str(self.next)} )"
     
 #Given a binary tree, design an algorithm which creates a linked list of all the
 #nodes at each depth (e.g. if you have a tree with depth D , you'll have D linked
@@ -28,9 +28,9 @@ def binary_tree_to_list_of_linked_lists(btree,depth=1,returnlist=[]):
         returnlist[depth-1]=ll
     else:
         returnlist.append(LinkedList(btree.content))
-    if not btree.left is None:
+    if btree.left is not None:
         returnlist=binary_tree_to_list_of_linked_lists(btree.left,depth+1,returnlist)
-    if not btree.right is None:
+    if btree.right is not None:
         returnlist=binary_tree_to_list_of_linked_lists(btree.right,depth+1,returnlist)
     return returnlist
 
@@ -39,7 +39,7 @@ def binary_tree_to_list(btree):
         return []
     ret = [[btree.content]]
     queue = [btree]
-    while len(queue) > 0:
+    while queue:
         new_queue = []
         for node in queue:
             if node.left is not None:
@@ -47,7 +47,7 @@ def binary_tree_to_list(btree):
             if node.right is not None:
                 new_queue.append(node.right)
         queue = new_queue
-        if len(queue) == 0:
+        if not queue:
             break
         ret.append([x.content for x in queue])
     return ret
@@ -65,18 +65,15 @@ def make_random_balanced_tree(depth):
 balanced_tree = make_random_balanced_tree(5)
 
 
-#testing
+balanced_tree = make_random_balanced_tree(5)
 
-print balanced_tree
 
-print "\nIs changed to:\n"
+balanced_tree
 
-count=0
-for ll in binary_tree_to_list_of_linked_lists(balanced_tree):
+
+for _ in binary_tree_to_list_of_linked_lists(balanced_tree):
     count += 1
-    print str(count) + ": " + str(ll)
-
-print "\nlist version", binary_tree_to_list(balanced_tree)
+balanced_tree = make_random_balanced_tree(5)
     
 #sample output of binary_tree_to_list_of_linked_lists
 ##( 60 ( ( 59 ( ( 32 ( ( 95 ( ( 42 ( None | None)) | ( 11 ( None | None)))) | ( 1 ( ( 56 ( None | None)) | ( 11 ( None | None)))))) | ( 26 ( ( 25 ( ( 68 ( None | None)) | ( 56 ( None | None)))) | ( 29 ( ( 41 ( None | None)) | ( 21 ( None | None)))))))) | ( 88 ( ( 63 ( ( 58 ( ( 4 ( None | None)) | ( 70 ( None | None)))) | ( 30 ( ( 53 ( None | None)) | ( 38 ( None | None)))))) | ( 4 ( ( 93 ( ( 91 ( None | None)) | ( 21 ( None | None)))) | ( 55 ( ( 62 ( None | None)) | ( 25 ( None | None))))))))))

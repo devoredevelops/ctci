@@ -18,14 +18,11 @@ def simpleCompress(compstring):
             if lastchar != "":
                 outstring.append(lastchar + str(charcount))
             charcount = 1
-        lastchar=char            
+        lastchar=char
     #final write
     outstring.append(lastchar + str(charcount))
     outstring="".join(outstring)
-    if len(outstring)<len(compstring):
-        return outstring
-    else:
-        return compstring
+    return outstring if len(outstring)<len(compstring) else compstring
 
 #testing
 
@@ -45,25 +42,22 @@ else:
 
 #Modulated version of the solution
 def countSame(string, pos):
-	#Counts number of same characters following a position
-	pos1 = pos
-	count = 0
-	while pos1 < len(string) and string[pos1] == string[pos]:
-		count = count +1
-		pos1 = pos1 + 1
-	return count
+    #Counts number of same characters following a position
+    pos1 = pos
+    count = 0
+    while pos1 < len(string) and string[pos1] == string[pos1]:
+        count = count +1
+        pos1 = pos1 + 1
+    return count
 
 
 def compress(string):
-	outstring = []
-	pos = 0
-	while pos < len(string):
-		outstring.append(string[pos] + str(countSame(string, pos)))
-		pos = pos + countSame(string, pos)
-	result = ''.join(outstring)
-	if len(result) < len(string):
-	    return result
-	else:
-	    return string
+    outstring = []
+    pos = 0
+    while pos < len(string):
+        outstring.append(string[pos] + str(countSame(string, pos)))
+        pos += countSame(string, pos)
+    result = ''.join(outstring)
+    return result if len(result) < len(string) else string
 
 print compress("aabccc   ccaaa")

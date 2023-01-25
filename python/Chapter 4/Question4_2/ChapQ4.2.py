@@ -12,8 +12,8 @@ class DirectedGraph:
 def is_route_between(node1,node2,cache={},cache2={}):    
     if node1==node2:
         return True
-    if (str(hash(node1)) + "," + str(hash(node2))) in cache2:
-        return cache2[(str(hash(node1)) + "," + str(hash(node2)))]    
+    if f"{hash(node1)},{hash(node2)}" in cache2:
+        return cache2[f"{hash(node1)},{hash(node2)}"]
     nodefound=False
     for neighbour in node1.neighbours:
         if neighbour in cache:
@@ -23,7 +23,7 @@ def is_route_between(node1,node2,cache={},cache2={}):
         nodefound=is_route_between(neighbour,node2,cache,cache2)
         if nodefound:
             break
-    cache2[(str(hash(node1)) + "," + str(hash(node2)))]=nodefound
+    cache2[f"{hash(node1)},{hash(node2)}"] = nodefound
     return nodefound
 
 #bfs algorithm
@@ -32,7 +32,7 @@ def is_route_between2(node1, node2):
         return True
     elif node1 is None or node2 is None:
         return False
-    visited = set([node1, node2])
+    visited = {node1, node2}
     from Queue import deque
     queue = deque([node1])
     while len(queue) > 0:

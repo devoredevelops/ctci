@@ -12,14 +12,11 @@ def pairs(seq):
         yield seq[i], seq[(i + 1) % n]
 
 def allunique2(s):
-   srtStr = sorted(s)
-   for (c1, c2) in pairs(srtStr):
-       if c1 == c2:
-           return False
-   return True
+    srtStr = sorted(s)
+    return all(c1 != c2 for c1, c2 in pairs(srtStr))
 
 if __name__ == '__main__':
     words = ('mary', 'ariadni')
     for w in words:
-        print('allunique({}): {}'.format(w, allunique(w)))
-        print('allunique2({}): {}'.format(w, allunique2(w)))
+        print(f'allunique({w}): {allunique(w)}')
+        print(f'allunique2({w}): {allunique2(w)}')

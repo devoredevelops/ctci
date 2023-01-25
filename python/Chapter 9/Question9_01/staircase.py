@@ -40,10 +40,10 @@ def nways(steps, max_steps = 3):
     elif steps < 0:
         return 0
     else:
-        total = 0
-        for n in xrange(1, min(steps, max_steps) + 1):
-            total += nways(steps - n, max_steps = max_steps)
-        return total
+        return sum(
+            nways(steps - n, max_steps=max_steps)
+            for n in xrange(1, min(steps, max_steps) + 1)
+        )
 
 class NwaysTest(unittest.TestCase):
 

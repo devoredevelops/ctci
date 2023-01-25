@@ -6,16 +6,16 @@ class Stack(list):
 	def empty(self):
 		return len(self) == 0
 
-	def sort_stack(s):
+	def sort_stack(self):
 		r = Stack()
-		while not s.empty():			
-			tmp = s.pop()
+		while not self.empty():		
+			tmp = self.pop()
 			while not r.empty() and r.peak() > tmp:
-				s.push(r.pop())
+				self.push(r.pop())
 			r.push(tmp)
-			while not s.empty() and s.peak() >= r.peak():
+			while not self.empty() and self.peak() >= r.peak():
 				#warning, >= here
-				r.push(s.pop())
+				r.push(self.pop())
 		return r
 
 #testing

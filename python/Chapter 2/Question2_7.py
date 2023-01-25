@@ -2,7 +2,7 @@ from classes.LinkedList import *
 
 # Iterative approch
 def isPalindrome_iter(linkedlist):
-    if linkedlist.head == None:
+    if linkedlist.head is None:
         return None
     fast = linkedlist.head
     slow = linkedlist.head
@@ -31,22 +31,20 @@ def isPalindrome_recu(linkedlist):
 
 
 def isPalindrome_recu_helper(current, length):
-    if current == None:
-        return [None, True]             
+    if current is None:
+        return [None, True]
     elif length == 1:
         return [current.next, True]
     elif length == 2:
         return [current.next.next, current.value == current.next.value]
-    
+
     # result is a python list stores two variables 
     result = isPalindrome_recu_helper(current.next, length - 2)
 
-    if (result[0] == None) or (not result[1]):
-        return result
-    else:
+    if result[0] != None and result[1]:
         result[1] = current.value == result[0].value
         result[0] = result[0].next
-        return result
+    return result
 
 
 def lengthOfLinkedlist(linkedlist):
@@ -87,20 +85,17 @@ def reverseList(L1):
 	return reverseL1
 
 def isEqual(L1,L2):
-	curr1 = L1.head
-	curr2 = L2.head
-	while curr1 != None and curr2 != None:
-		if curr1.value != curr2.value:
-			return False
-		curr1 = curr1.next
-		curr2 = curr2.next
-	if curr1 != None or curr2 != None:
-		return False
-	else:
-		return True
+    curr1 = L1.head
+    curr2 = L2.head
+    while curr1 != None and curr2 != None:
+    	if curr1.value != curr2.value:
+    		return False
+    	curr1 = curr1.next
+    	curr2 = curr2.next
+    return curr1 is None and curr2 is None
 
 
-for i in range(27):
-	L1 = randomLinkedList(3, 3, 5)
-	print L1
-	print isPalindrome(L1)
+for _ in range(27):
+    L1 = randomLinkedList(3, 3, 5)
+    L1 = randomLinkedList(3, 3, 5)
+    L1 = randomLinkedList(3, 3, 5)

@@ -11,9 +11,9 @@ def findBeginning(linkedlist):
         fast = fast.next.next
         if fast == slow:
             break
-    
+
     # Check whether it is a circular linked list
-    if fast == None or fast.next == None:
+    if fast is None or fast.next is None:
         return None
 
     # Move one runner to head. Making them move at same pace, they will meet at the beginning of the loop

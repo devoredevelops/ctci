@@ -9,10 +9,10 @@ def partition(linkedlist, x):
                 p1.next = p2.next
                 p2.next = linkedlist.head
                 linkedlist.head = p2
-                p2 = p1.next
             else:
                 p1 = p1.next
-                p2 = p1.next
+
+            p2 = p1.next
 
 
 
